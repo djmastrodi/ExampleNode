@@ -1,6 +1,6 @@
 import { ProductRepository } from '../../';
 
-jest.mock('./../../../infrastructure/database/connect', () => ({
+jest.mock('./../../../infrastructure/dataBase/connect', () => ({
   contextHandler: () => ({
     getAll: () => new Promise(res => res(true)),
     getByFilter: () => new Promise(res => res(true)),
