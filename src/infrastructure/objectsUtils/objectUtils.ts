@@ -51,11 +51,11 @@ export const getPaginationFilter = (
   return pagintionFilter;
 };
 
-export const isEmpty = (obj): Boolean => {
+export const isEmpty = (obj: any): boolean => {
   return Object.keys(obj).length === 0;
 };
 
-export const isNullUndefinedorNaN = (value) => {
+export const isNullUndefinedorNaN = (value: any) => {
   if (value === null) {
     return true;
   } else if (value === undefined) {
