@@ -7,15 +7,53 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Service",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/dist/app.js",
+            "outputCapture": "std",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ]
-        }
+            ],
+            "env": {
+                "LOG_CLOUD_WATCH": "false",
+                "DOCUMENTDB_URI": "mongodb://localhost:27017",
+                "USE_NEW_URL_PARSER": "true",
+                "USE_UNIFIED_TOPOLOGY": "true",
+                "SSL": "false",
+                "SSL_VALIDATE": "false",
+                "LOG_LEVEL":"info",
+                "DATABASE_NAME":"EXAMPLE_NODE",
+                "LOG_FILE": "false",
+                "AWS_ACCESS_KEY_ID":"",
+                "AWS_SECRET_ACCESS_KEY":""
+            }
+        },
+        {
+            "type": "node",
+            "name": "jest-tests",
+            "request": "launch",
+            "args": ["--runInBand"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Current File",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+            "args": ["${fileBasenameNoExtension}", "--runInBand"],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "windows": {
+              "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+            }
+          }
     ]
 }

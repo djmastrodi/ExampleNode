@@ -1,0 +1,22 @@
+{
+  "collectCoverage": true,
+  "coverageDirectory": "coverage",
+  "preset": "@shelf/jest-mongodb",
+  "coverageThreshold": {
+    "global": {
+      "branches": 10,
+      "functions": 10,
+      "lines": 10,
+      "statements": 10
+    }
+  },
+  "errorOnDeprecated": true,
+  "moduleFileExtensions": ["ts", "tsx", "js"],
+  "testPathIgnorePatterns": ["/node_modules/", "dist/"],
+  "testRegex": "test.*\\.ts?$",
+  "testTimeout": 10000,
+  "transform": {
+    "\\.(tsx?)": "ts-jest"
+  },
+  "verbose": true
+}

@@ -1,56 +1,71 @@
 import express from "express";
-import * as bodyParser from 'body-parser';
+import { Logger } from "./infrastructure";
 // const PORT = process.env.PORT || 3000;
 
-import {
-    ProductRouters,
-    ProductController
-} from './controllers';
-import {createContainer, InjectionMode, asClass} from 'awilix';
+import { ProductRouters, ProductController } from "./controllers";
+import { createContainer, InjectionMode, asClass } from "awilix";
 
-export default new class App {
-    public express: express.Express;
+const logger = Logger();
+const bodyParser = require("body-parser");
 
-    private containerDI = createContainer({
-        injectionMode: InjectionMode.CLASSIC,
-    })
+export default new (class App {
+  public express: express.Express;
 
-    private loggerMiddleware(request: express.Request, response: express.Response, next) {
-      console.log(`${request.method} ${request.path}`);
-      next();
-    }
+  private containerDI = createContainer({
+    injectionMode: InjectionMode.CLASSIC,
+  });
 
-    constructor() {
-        this.express = express();
-        this.dependencyInjection();
-        this.routes();
-        this.start();
-    }
+  private loggerMiddleware(
+    request: express.Request,
+    response: express.Response,
+    next
+  ) {
+    logger.info(
+      JSON.stringify({
+        Params: request.params,
+        path: request.path,
+        method: request.method,
+        body: request.body,
+        query: request.query,
+      })
+    );
+    next();
+  }
 
-    public start(): void {
-        console.log('starting.....')
-        const port = 3000;
-       
-        this.express.set('port', port);
+  constructor() {
+    this.express = express();
+    this.dependencyInjection();
+    this.routes();
+    this.start();
+  }
 
-        this.express.listen(port, () => {
-            const startingMessage = `Thing starting. Listening on port ${port}`;
-            console.log(startingMessage);
-        })
-    }
+  public start(): void {
+    console.log("starting.....");
+    const port = 3000;
 
-    private dependencyInjection(): void {
-        this.containerDI.register({
-          productController: asClass(ProductController)
-        })
-    }
+    this.express.set("port", port);
 
-    private routes(): void {
-        const router = express.Router();
-        this.express.all('*',this.loggerMiddleware);
-        ProductRouters(router, this.containerDI.resolve('productController'));
+    this.express.listen(port, () => {
+      const startingMessage = `Thing starting. Listening on port ${port}`;
+      console.log(startingMessage);
+    });
+  }
 
-        this.express.use('/',router);
-        
-    }
-}
+  private dependencyInjection(): void {
+    this.containerDI.register({
+      productController: asClass(ProductController),
+    });
+  }
+
+  private routes(): void {
+    const router = express.Router();
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.all("*", this.loggerMiddleware);
+    
+
+    ProductRouters(router, this.containerDI.resolve("productController"));
+
+    this.express.use("/", router);
+  }
+})();

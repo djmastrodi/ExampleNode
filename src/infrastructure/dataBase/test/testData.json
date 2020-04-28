@@ -1,0 +1,44 @@
+{
+    "product": [
+        {
+            "_id": "5ea74332b9c7f660fc397048",
+            "codigo": 496,
+            "description": "teste 496",
+            "info": {
+                "price": 100,
+                "discount": 10
+            },
+            "status": "Ativo"
+        },
+        {
+            "_id": "5ea74332b9c7f660fc397049",
+            "codigo": 497,
+            "description": "teste 497",
+            "info": {
+                "price": 100,
+                "discount": 10
+            },
+            "status": "Ativo"
+        },
+        {
+            "_id": "5ea74332b9c7f660fc39704a",
+            "codigo": 498,
+            "description": "teste 498",
+            "info": {
+                "price": 100,
+                "discount": 10
+            },
+            "status": "Ativo"
+        },
+        {
+            "_id": "5ea74332b9c7f660fc39704b",
+            "codigo": 499,
+            "description": "teste 499",
+            "info": {
+                "price": 100,
+                "discount": 10
+            },
+            "status": "Ativo"
+        }
+    ]
+  }

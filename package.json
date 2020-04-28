@@ -4,10 +4,17 @@
   "description": "Exemplo de Projeto Node com TS",
   "main": "app.ts",
   "scripts": {
-    "test": "test",
-    "build":"tsc",
+    "test": "jest --config jest.config.json",
+    "build": "tsc",
     "start": "nodemon --watch 'src/' --exec \"ts-node src/app.ts\" -e ts",
     "dev:debug": "nodemon --inspect src/app.ts"
+  },
+  "jest": {
+    "preset": "node",
+    "testResultsProcessor": "jest-sonar-reporter",
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -20,14 +27,26 @@
   },
   "homepage": "https://github.com/djmastrodi/ExampleNode#readme",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "^7.9.0",
+    "@shelf/jest-mongodb": "^1.1.5",
+    "@types/jest": "^25.2.1",
+    "babel-jest": "^25.4.0",
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3",
+    "ts-jest": "^25.4.0",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "@types/express": "^4.17.6",
     "awilix": "^4.2.5",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "express-validator": "^6.4.0"
+    "express-validator": "^6.4.0",
+    "mongodb": "^3.5.6",
+    "winston": "^3.2.1",
+    "winston-cloudwatch": "^2.3.2"
   }
 }
