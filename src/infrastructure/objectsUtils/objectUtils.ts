@@ -12,9 +12,7 @@ export const getObject = (objectQuery: any, objectT: any): any => {
       if (typeof objectT[propertyName] === "number") {
         objectResult[propertyName] = parseFloat(objectQuery[propertyName]);
       }
-      if (
-        isNullUndefinedorNaN(objectResult[propertyName])
-      ) {
+      if (isNullUndefinedorNaN(objectResult[propertyName])) {
         delete objectResult[propertyName];
       }
     }
@@ -56,11 +54,7 @@ export const isEmpty = (obj: any): boolean => {
 };
 
 export const isNullUndefinedorNaN = (value: any) => {
-  if (value === null) {
-    return true;
-  } else if (value === undefined) {
-    return true;
-  } else if (Object.is(value, NaN)) {
+  if (value === null || value === undefined || Object.is(value, NaN)) {
     return true;
   }
   return false;
