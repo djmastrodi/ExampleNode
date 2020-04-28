@@ -1,6 +1,6 @@
 import { Request, Response, Router, NextFunction } from "express";
 import { ProductService } from "../../services";
-import { Product, getProduct } from "../../models";
+import { getProduct } from "../../models";
 import { check, validationResult } from "express-validator";
 import {
   ResponseSource,
