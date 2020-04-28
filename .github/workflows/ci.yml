@@ -36,10 +36,10 @@ jobs:
         npm run test
     
     - name: "[QA] SonarCloud Code Analysis"
-        env:
-          ORGANIZATION: ${{ secrets.SONARCLOUD_ORGANIZATION }}
-          PROJECT_KEY: ${{ secrets.SONARCLOUD_PROJECT_KEY }}
-          TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node /tasks/sonar-scanner-upload.js "$ORGANIZATION" "$PROJECT_KEY" "$TOKEN"
+      env:
+        ORGANIZATION: ${{ secrets.SONARCLOUD_ORGANIZATION }}
+        PROJECT_KEY: ${{ secrets.SONARCLOUD_PROJECT_KEY }}
+        TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        node /tasks/sonar-scanner-upload.js "$ORGANIZATION" "$PROJECT_KEY" "$TOKEN"
