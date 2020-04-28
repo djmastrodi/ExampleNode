@@ -2,7 +2,7 @@
 import { Logger } from "../logger/logger";
 import { PagintionFilter } from "./pagintionFilter";
 import { MongoClient } from "mongodb";
-import configurations from "../../config/config";
+import configurations from "../../config/configurations";
 
 const logger = Logger();
 
