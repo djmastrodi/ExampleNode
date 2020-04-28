@@ -1,6 +1,6 @@
-const sonarqubeScanner = require('../services/node_modules/sonarqube-scanner');
+const sonarqubeScanner = require('../node_modules/sonarqube-scanner');
 const fs = require('fs');
-const axios = require('../services/node_modules/axios').default;
+const axios = require('../node_modules/axios').default;
 
 // Environment variables
 const SONAR_URL = 'https://sonarcloud.io';
