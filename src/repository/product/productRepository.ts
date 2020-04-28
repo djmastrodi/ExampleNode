@@ -2,7 +2,7 @@ import { contextHandler } from "../../infrastructure";
 import { Product, FilterProduct } from "../../models";
 import { PagintionFilter } from "infrastructure/dataBase/pagintionFilter";
 
-export class ProductRepository {
+export default class ProductRepository {
   private DBContext = null;
   
   constructor() { }
@@ -55,5 +55,3 @@ export class ProductRepository {
     return await this.DBContext.edit(filter, item);
   };
 }
-
-export default { ProductRepository };

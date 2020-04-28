@@ -1,4 +1,4 @@
-import { ProductRepository } from '../productRepository';
+import { ProductRepository } from '../../';
 
 jest.mock('./../../../infrastructure/database/connect', () => ({
   contextHandler: () => ({

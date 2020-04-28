@@ -1,15 +1,19 @@
-import  { ProductService } from "../productServices";
+import { ProductService } from "../productServices";
+
+const productRepository = {
+  getOne: jest.fn().mockResolvedValue(true),
+  insertMany: jest.fn().mockResolvedValue(true),
+  update: jest.fn().mockResolvedValue(true),
+  find: jest.fn().mockResolvedValue(true),
+  deleteMany: jest.fn().mockResolvedValue(true),
+};
 
 jest.mock("./../../../repository/product/productRepository", () => {
   // eslint-disable-next-line func-names
-  return function () {
-    return {
-      getOne: jest.fn().mockResolvedValue(true),
-      insertMany: jest.fn().mockResolvedValue(true),
-      update: jest.fn().mockResolvedValue(true),
-      find: jest.fn().mockResolvedValue(true),
-      deleteMany: jest.fn().mockResolvedValue(true),
-    };
+  return {
+    default: function () {
+      return productRepository;
+    },
   };
 });
 
