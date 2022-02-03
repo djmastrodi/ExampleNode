@@ -38,11 +38,11 @@ export const getPaginationFilter = (
         : objectQuery["orderType"].toString(),
     pageNumber:
       objectQuery["pageNumber"] === undefined
-        ? null
+        ? 1
         : parseInt(objectQuery["pageNumber"].toString()),
     pageSize:
       objectQuery["pageSize"] === undefined
-        ? null
+        ? 10
         : parseInt(objectQuery["pageSize"].toString()),
   };
 

@@ -2,7 +2,7 @@
 import { Logger } from "../logger/logger";
 import { PagintionFilter } from "./pagintionFilter";
 import { MongoClient } from "mongodb";
-import configurations from "../../config/configurations";
+import { Configurations } from "../../config/configurations";
 
 const logger = Logger();
 
@@ -12,19 +12,17 @@ const getConnection = async (
   uri?: string
 ): Promise<any> => {
 
-  const connectionConfig = {
-    connectParams: configurations.dataBaseConfig.connectionConfig.connectParams,
-  };
-
+  const connectionConfig = new Configurations();
+  
   const connectInstance = await MongoClient.connect(
-   uri || configurations.dataBaseConfig.connectionConfig.connectionString,
-   connectionConfig.connectParams
+   uri || connectionConfig.config.dataBaseConfig.connectionConfig.connectionString,
+   connectionConfig.config.connectParams
   );
 
   logger.info("Iniciando Conexão com o Banco de Dados...");
 
   const db = connectInstance.db(
-    dbName || configurations.dataBaseConfig.dataBaseName
+    dbName || connectionConfig.config.dataBaseConfig.dataBaseName
   );
 
   const collection = db.collection(collectionName); // Which "collection"/table
@@ -67,7 +65,7 @@ export const contextHandler = async (
     getPagination: async (paginationfilter: PagintionFilter) => {
       logger.info(
         `Buscando registros de acordo com o filtro ${JSON.stringify(
-          paginationfilter.filter
+          paginationfilter
         )}`
       );
       const sort = JSON.parse(

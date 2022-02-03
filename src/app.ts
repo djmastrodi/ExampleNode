@@ -4,7 +4,8 @@ import { Logger } from "./infrastructure";
 
 import { ProductRouters, ProductController } from "./controllers";
 import { createContainer, InjectionMode, asClass } from "awilix";
-
+require('dotenv').config();
+console.log(process.env);
 const logger = Logger();
 const bodyParser = require("body-parser");
 
